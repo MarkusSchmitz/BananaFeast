@@ -1,10 +1,14 @@
 import numpy as np
 from collections import namedtuple, deque
+import torch
+import random
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class Memory():
     
-    def __init__(self, action_size, buffer_size, batch_size):
+    def __init__(self, buffer_size, batch_size):
 
 
         self.memory = deque(maxlen=buffer_size)  
@@ -14,13 +18,13 @@ class Memory():
         self.experiences = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done"])
 
 
-    def add_experience(state, action, reward, next_state, done):
+    def add_experience(self, state, action, reward, next_state, done):
         """Add a new experience to memory."""
         experience = self.experiences(state, action, reward, next_state, done)
         self.memory.append(experience)
 
 
-    def sample_Batch():
+    def sample_Batch(self):
         """Randomly sample a batch of experiences from memory."""
         experience_batch = random.sample(self.memory, k=self.batch_size)
 
