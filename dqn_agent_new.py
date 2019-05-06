@@ -2,6 +2,7 @@ import numpy as np
 import random
 from collections import namedtuple, deque
 from model import QNetwork
+from model import QNetwork2
 from memory import Memory
 import torch
 import torch.nn.functional as F
@@ -15,7 +16,7 @@ class Agent():
 
     def __init__(self, state_size, action_size, seed, 
         BUFFER_SIZE = int(1e5), BATCH_SIZE = 64, GAMMA = 0.99, 
-        TAU = 1e-3, LR = 5e-4, UPDATE_INTERVAL = 20, EPSILON = 1):
+        TAU = 1e-3, LR = 5e-4, UPDATE_INTERVAL = 20, EPSILON = 1, model=True):
 
         '''
         Initialize Agent
@@ -48,8 +49,12 @@ class Agent():
         self.scoremax = 0
 
         # init Qnetworks
-        self.localNet = QNetwork(state_size, action_size, seed).to(device)
-        self.targetNet = QNetwork(state_size, action_size, seed).to(device)
+        if model == True:
+            self.localNet = QNetwork(state_size, action_size, seed).to(device)
+            self.targetNet = QNetwork(state_size, action_size, seed).to(device)
+        else:
+            self.localNet = QNetwork2(state_size, action_size, seed).to(device)
+            self.targetNet = QNetwork2(state_size, action_size, seed).to(device)
         self.optimizer = optim.Adam(self.localNet.parameters(), lr=LR)
 
         # init experience memory
