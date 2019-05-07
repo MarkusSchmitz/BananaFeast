@@ -5,7 +5,7 @@ import torch.nn.functional as F
 class QNetwork(nn.Module):
     """Actor (Policy) Model."""
 
-    def __init__(self, state_size, action_size, seed, fc1_units=64, fc2_units=32, fc3_units=16, fc4_units=16):
+    def __init__(self, state_size, action_size, seed, fc1_units=64, fc2_units=32, fc3_units=16):
         """Initialize parameters and build model.
         Params
         ======
@@ -14,6 +14,7 @@ class QNetwork(nn.Module):
             seed (int): Random seed
             fc1_units (int): Number of nodes in first hidden layer
             fc2_units (int): Number of nodes in second hidden layer
+            fc3_units (int): Number of nodes in third hidden layer
         """
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
@@ -48,11 +49,14 @@ class QNetwork2(nn.Module):
             seed (int): Random seed
             fc1_units (int): Number of nodes in first hidden layer
             fc2_units (int): Number of nodes in second hidden layer
+            fc3_units (int): Number of nodes in third hidden layer
+            fc4_units (int): Number of nodes in fourth hidden layer
+
         """
         super(QNetwork2, self).__init__()
         self.seed = torch.manual_seed(seed)
         self.fc1 = nn.Linear(state_size, fc1_units)
-        self.dropout1 = nn.Dropout(0.2)
+        self.dropout1 = nn.Dropout(0.2) # experimental dropout layer
         self.fc2 = nn.Linear(fc1_units, fc2_units)
         self.fc3 = nn.Linear(fc2_units, fc3_units)
         self.dropout2 = nn.Dropout(0.2)
@@ -64,7 +68,7 @@ class QNetwork2(nn.Module):
         x = F.relu(self.fc1(state))
         #x = self.dropout1(x)
         x = F.relu(self.fc2(x))
-        #x = self.dropout2(x)
+        x = self.dropout2(x)
         x = F.relu(self.fc3(x))
         x = F.relu(self.fc4(x))
         return self.fc5(x)
