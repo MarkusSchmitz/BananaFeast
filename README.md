@@ -7,7 +7,7 @@
 
 # Project 1: Navigation
 
-### Introduction
+## Introduction
 
 This Project implements a Reinforcment Learning Agent that learns to collect Bananas in a game environment.
 ![Banana][banana]
@@ -22,38 +22,44 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 The environment thereby has a discrete sction space and is episodic, as every episode has a fixed length of 100 steps. The Agent is considered to have solved the task if it is able to optain an average score of over 13 in an episode.
 
-### Getting Started
-
-1. Download this Bananafeast repositoryas well as the Udacity DRLND Repo from Github.
-
-2. Create a
-
-2. Navigate into the DRLND re
+## Getting Started
 
 1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
     - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
-    
-2. Place the extracted file in the BananaFeast GitHub repository, in base directory.
 
-### Instructions
+2. Place the extracted folder in the BananaFeast GitHub repository, in the base directory.
 
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
+3. Install the DRLND repository as stated in the repo.
 
-### (Optional) Challenge: Learning from Pixels
+4. in the console activate your environment created in step 2 and install the seaborn package with:
+```
+pip install seaborn 
+```
+5. Open a juypter notebook inside the BananFeast directory and start the banana_agent notebook.
 
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
+## Instructions
 
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
+### Watching a smart Agent
 
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
+Set the "train" parameter to false and run the whole notebook.
 
-Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
 
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+### Training the agent
+
+Go to the cell where the parameter grid is created.
+Add or remove parameter values until you are satisfied with the coverage.
+
+Cange the "train" Parameter on top of the Notebook to "True" and run the whole notebook.
+To train an optimized Agent use the default values.
+
+### Evaluating the Agent
+
+The best Values reached by the Agent were ~16 points on average with epsilon 0.01 at 1500 episodes.
+In Watch mode the Agent scores between 8 and 21 points depending on the randomness of the environment.
+
+### Known Issues
+
+The Agent has been seen to have issues if two bananas are in a further distance at each side of the screen. This makes the Agent jerk to both sides and effectively paralyzes it.

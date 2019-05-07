@@ -21,10 +21,8 @@ class QNetwork(nn.Module):
         self.fc1 = nn.Linear(state_size, fc1_units)
         self.dropout1 = nn.Dropout(0.2)
         self.fc2 = nn.Linear(fc1_units, fc2_units)
-        self.fc3 = nn.Linear(fc2_units, fc3_units)
+        self.fc3 = nn.Linear(fc2_units, action_size)
         self.dropout2 = nn.Dropout(0.2)
-        self.fc4 = nn.Linear(fc3_units, fc4_units)
-        self.fc5 = nn.Linear(fc4_units, action_size)
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
