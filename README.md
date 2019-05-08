@@ -32,7 +32,7 @@ The environment thereby has a discrete sction space and is episodic, as every ep
 
 2. Place the extracted folder in the BananaFeast GitHub repository, in the base directory.
 
-3. Install the DRLND repository as stated in the repo.
+3. Install the dependancies as stated in the [DRLND repository](https://github.com/udacity/deep-reinforcement-learning#dependencies).
 
 4. in the console activate your environment created in step 2 and install the seaborn package with:
 ```
