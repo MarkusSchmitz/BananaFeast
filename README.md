@@ -7,7 +7,7 @@
 
 # Project 1: Navigation
 
-## Introduction
+## Project Details
 
 This Project implements a Reinforcment Learning Agent that learns to collect Bananas in a game environment.
 ![Banana][banana]
